@@ -16,7 +16,7 @@ export default class Chats extends Component {
   render() {
     return (
       <View>
-        <Text></Text>
+        <Text></Text>//ash
       </View >
 
     );
