@@ -16,7 +16,7 @@ export default class Profile extends Component {
 render() {
   return (
     <View>
-      <Text>YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+      <Text>YOOOOOOOOO</Text>
     </View >
 
   );
