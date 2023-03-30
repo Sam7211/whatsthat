@@ -1,28 +1,18 @@
 import React, { Component } from 'react';
-import { FlatList, ActivityIndicator, Text, View, Button } from 'react-native';
-import { TextInput } from 'react-native-web';
+import Chatscreen from '../Navigation/Chatscreen';
+import Profile from '../Navigation/Profile';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+const Stack = createNativeStackNavigator();
 
 export default class Chats extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: true,
-
-    }
-  }
-
-
-
   render() {
     return (
-      <View>
-        <Text></Text>
-      </View >
-
+      <Stack.Navigator>
+       <Stack.Screen name = "ChatScreen" component = {Chatscreen} options={{headerShown: false}}/>
+       {/* <Stack.Screen name = "" component = {Profile} options={{headerShown: false}}/> */}
+       </Stack.Navigator> 
     );
   }
 }
-
-
-
-

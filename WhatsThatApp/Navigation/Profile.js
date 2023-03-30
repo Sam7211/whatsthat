@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
-import { FlatList, ActivityIndicator, Text, View, Button } from 'react-native';
-import { TextInput } from 'react-native-web';
+import ProfileScreen from '../Navigation/ProfileScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default class Profile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: true,
 
-    }
+const Stack = createNativeStackNavigator();
+
+export default class Chats extends Component {
+  render() {
+    return (
+      <Stack.Navigator>
+       <Stack.Screen name = "ProfileScreen" component = {ProfileScreen} options={{headerShown: false}}/>
+       </Stack.Navigator> 
+    );
   }
-
-
- 
-render() {
-  return (
-    <View>
-
-    </View >
-
-  );
 }
-}
-

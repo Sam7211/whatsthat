@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Register from './StartScreen/Register';
 import MainNav from './Navigation/MainNav';
 import Login from './StartScreen/Login';
-import Chats from './Navigation/Chats';
+//import Chats from './Navigation/Chats';
 // import Profile from './Navigation/Profile';
 
 const Stack = createNativeStackNavigator();

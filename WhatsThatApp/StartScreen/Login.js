@@ -84,6 +84,26 @@ render() {
         />
     </View>
 
+// const styles = StyleSheet.create({
+//   box: {
+//     width: 50,
+//     height: 50,
+//   },
+//   row: {
+//     flexDirection: 'row',
+//     flexWrap: 'wrap',
+//   },
+//   button: {
+//  padding: 8,
+//    borderRadius: 4,
+// backgroundColor: 'oldlace',
+// alignSelf: 'flex-start',
+//     marginRight: 10,
+//    marginBottom: 10,
+//    },
+//  }
+
+
   );
 }
 }
