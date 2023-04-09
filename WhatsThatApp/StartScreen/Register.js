@@ -58,6 +58,9 @@ return fetch('http://localhost:3333/api/1.0.0/user', {
     .catch((error) => {
         console.error(error);
     });
+
+
+    
 };
 
 render(){
