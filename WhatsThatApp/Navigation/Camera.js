@@ -21,37 +21,37 @@ export default function Camerascreen() {
         console.log("Camera: ", type)
     }
 
-    // async function takePhoto() {
-    //     if (camera) {
-    //         const options = { quality: 0.5, base64: true, onPictureSaved: (data) => sendToServer(data) }
-    //         const data = await camera.takePictureAsync(options)
-    //     }
-    // }
+    async function takePhoto() {
+        if (camera) {
+            const options = { quality: 0.5, base64: true, onPictureSaved: (data) => sendToServer(data) }
+            const data = await camera.takePictureAsync(options)
+        }
+    }
 
-    // async function sendToServer(data) {
-    //     console.log("HERE", data.uri)
+    async function sendToServer(data) {
+        console.log("HERE", data.uri)
 
-    //     let id = 10;
-    //     let token = "token here";
+        let id = 10;
+        let token = "token here";
 
-    //     let res = await fetch(data.uri);
-    //     let blob = await res.blob()
+        let res = await fetch(data.uri);
+        let blob = await res.blob()
 
-    //     return fetch("http://localhost:3333/api/1.0.0/user/" + id + "/photo", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "image/png",
-    //             "X-Authorization": token
-    //         },
-    //         body: blob
-    //     })
-    //         .then((response) => {
-    //             console.log("Picture Added", response);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         })
-    // }
+        return fetch("http://localhost:3333/api/1.0.0/user/" + id + "/photo", {
+            method: "POST",
+            headers: {
+                "Content-Type": "image/png",
+                "X-Authorization": token
+            },
+            body: blob
+        })
+            .then((response) => {
+                console.log("Picture Added", response);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
 
 
 
@@ -67,11 +67,11 @@ export default function Camerascreen() {
                         </TouchableOpacity>
                     </View>
 
-                    {/* <View style={styles.buttonContainer}>
+                    <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.button} onPress={takePhoto}>
                             <Text style={styles.text}>Take Photo</Text>
                         </TouchableOpacity>
-                    </View> */}
+                    </View>
                 </Camera>
             </View>
         );
