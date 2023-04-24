@@ -23,7 +23,7 @@ export default class Logout extends Component {
                 await AsyncStorage.removeItem("whatsthat_user_id")
                 this.props.navigation.navigate("Login")
             } else {
-                throw "Something went wrong on our end. Please try again"
+                throw "Something went wrong on our end."
             }
         } )
         .catch((error) => {
