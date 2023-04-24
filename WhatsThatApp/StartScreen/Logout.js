@@ -5,6 +5,8 @@ export default class Logout extends Component {
         super(props);
     }
 
+
+    
     async Logout() {
         return fetch ('http://localhost:3333/api/1.0.0/logout', {
             method: 'POST',

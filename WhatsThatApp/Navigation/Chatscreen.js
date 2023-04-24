@@ -78,7 +78,6 @@ export default class Chatscreen extends Component {
 
 
     render() {
-        console.log(this.state.chat)
         return (
             <View>
                 <Text>\Hi</Text>
