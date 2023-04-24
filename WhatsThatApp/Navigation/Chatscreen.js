@@ -9,10 +9,12 @@ export default class Chatscreen extends Component {
         this.state = {
             Chats: [],
             isLoading: true,
+            chat: []
 
         }
     }
     async Chats() {
+
         return fetch('http://localhost:3333/api/1.0.0/chat', {
             method: 'GET',
             headers: {
@@ -41,21 +43,63 @@ export default class Chatscreen extends Component {
             });
     }
 
+    async SignOut() {
+        return fetch ('http://localhost:3333/api/1.0.0/logout', {
+            method: 'POST',
+            headers: {
+                "X-Authorization": await AsyncStorage.getItem("whatsthat_session_token")
+            }
+        } )
+        .then(async (Response) => {
+            if (Response.status === 200){
+                await AsyncStorage.removeItem("whatsthat_session_token")
+                await AsyncStorage.removeItem("whatsthat_user_id")
+                this.props.navigation.navigate("Login")
+            } else if (Response.status === 401) {
+                console.log("Unauthorised")
+                await AsyncStorage.removeItem("whatsthat_session_token")
+                await AsyncStorage.removeItem("whatsthat_user_id")
+                this.props.navigation.navigate("Login")
+            } else {
+                throw "Something went wrong on our end. Please try again"
+            }
+        } )
+        // .catch((error) => {
+        //     this.setState({"error": error})
+        //     this.setState({"Submitted": false})
+        // })
+    }
+
+
+
+    componentDidMount() {
+        this.Chats();
+    }
 
 
     render() {
+        console.log(this.state.chat)
         return (
             <View>
                 <Text>\Hi</Text>
                 <FlatList
-                    data={this.state.Chats}
-                    renderItem = {({ item }) => (
+                    data={this.state.chat}
+                    renderItem={({ item }) => (
                         <Text>{item.name}</Text>
                     )}
                 />
+                <Button title="New Chat" onPress={() => this.props.navigation.navigate('NewChat')} />
+
+                <Button
+                    title="Sign Out"
+                    onPress={this.SignOut}
+                />
 
             </View >
+
+
         );
+
     };
 }
 

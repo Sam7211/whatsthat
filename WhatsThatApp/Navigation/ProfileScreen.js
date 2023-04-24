@@ -7,19 +7,15 @@ export default class Profile extends Component {
     super(props);
     this.state = {
       isLoading: true,
-
-    }
+    };
   }
 
-
- 
-render() {
-  return (
-    <View>
-      <Text>YOOOOOOOOO</Text>
-    </View >
-
-  );
+  render() {
+    return (
+      <View>
+        <Text>YOOOOOOOOO</Text>
+        <Button title="Go to CameraScreen" onPress={() => this.props.navigation.navigate('Camera')} />
+      </View >
+      );
+  }
 }
-}
-
