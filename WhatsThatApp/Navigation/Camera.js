@@ -1,6 +1,7 @@
 import { Camera, CameraType, onCameraReady, CameraPictureOptions } from 'expo-camera';
 import { useState, useEffect } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Camerascreen() {
     const [type, setType] = useState(CameraType.back);
@@ -9,8 +10,8 @@ export default function Camerascreen() {
 
     // useEffect(() => {
     //     async function getPermission(){
-    //         //requestPermission(await Camera.getPermissionsAsync())
-    //         //await requestPermission(permiss)
+    //         requestPermission(await Camera.getPermissionsAsync())
+    //         await requestPermission(permiss)
     //         console.log(permission)
     //     }
     //     getPermission()
@@ -28,11 +29,12 @@ export default function Camerascreen() {
         }
     }
 
+
     async function sendToServer(data) {
         console.log("HERE", data.uri)
 
         let id = 10;
-        let token = "token here";
+        let token = await AsyncStorage.getItem("whatsthat_session_token");
 
         let res = await fetch(data.uri);
         let blob = await res.blob()
