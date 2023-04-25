@@ -43,11 +43,11 @@ export default class Chatscreen extends Component {
             });
     }
 
-    async SignOut() {
+     SignOut = () =>  {
         return fetch ('http://localhost:3333/api/1.0.0/logout', {
             method: 'POST',
             headers: {
-                "X-Authorization": await AsyncStorage.getItem("whatsthat_session_token")
+                "X-Authorization":AsyncStorage.getItem("whatsthat_session_token")
             }
         } )
         .then(async (Response) => {

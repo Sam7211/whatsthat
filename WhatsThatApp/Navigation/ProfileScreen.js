@@ -57,6 +57,14 @@ export default class Profile extends Component {
           <Text>Name: {this.state.userinfo.first_name}</Text>
         )}
 
+        {this.state.userinfo && (
+          <Text>Surname: {this.state.userinfo.last_name}</Text>
+        )}
+
+        {this.state.userinfo && (
+          <Text>Email: {this.state.userinfo.email}</Text>
+        )}
+
         <Button title="Go to CameraScreen" onPress={() => this.props.navigation.navigate('Camera')} />
       </View >
     );
