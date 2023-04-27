@@ -33,7 +33,7 @@ export default function Camerascreen() {
     async function sendToServer(data) {
         console.log("HERE", data.uri)
 
-        let id = 10;
+        let id = await AsyncStorage.getItem("whatsthat_user_id");
         let token = await AsyncStorage.getItem("whatsthat_session_token");
 
         let res = await fetch(data.uri);

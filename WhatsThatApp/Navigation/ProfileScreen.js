@@ -54,7 +54,8 @@ export default class Profile extends Component {
       fetch("http://localhost:3333/api/1.0.0/user/" + user_id + "/photo", {
             method: "GET",
             headers: {
-                "X-Authorization": await AsyncStorage.getItem("whatsthat_session_token")
+                "X-Authorization": await AsyncStorage.getItem("whatsthat_session_token"),
+                'Content-Type': 'image/PNG'
             }
         })
         .then((res) => {
