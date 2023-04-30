@@ -74,8 +74,6 @@ export default class Profile extends Component {
         })
     }
 
-
-
     render(){
       console.log(photo)
       if(this.state.photo){
