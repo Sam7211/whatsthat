@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { Component } from 'react';
-import { FlatList, ActivityIndicator, Text, View, Button, TextInput,Image } from 'react-native';
+import { FlatList, ActivityIndicator, Text, View, Button, TextInput, Image } from 'react-native';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ export default class Profile extends Component {
     };
   }
 
-  async GetInfo(){
+  async GetInfo() {
     const userid = await AsyncStorage.getItem("whatsthat_user_id")
     return fetch('http://localhost:3333/api/1.0.0/user/' + userid, {
       method: 'GET',
@@ -43,72 +43,73 @@ export default class Profile extends Component {
       });
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.GetInfo();
     this.get_profile_image()
   }
 
-    async get_profile_image(){
+  async get_profile_image() {
 
-      const user_id =  await AsyncStorage.getItem("whatsthat_session_token")
-      fetch("http://localhost:3333/api/1.0.0/user/" + user_id + "/photo", {
-            method: "GET",
-            headers: {
-                "X-Authorization": await AsyncStorage.getItem("whatsthat_session_token"),
-                'Content-Type': 'image/PNG'
-            }
-        })
-        .then((res) => {
-            return res.blob()
-        })
-        .then((resBlob) => {
-            let data = URL.createObjectURL(resBlob);
+    const user_id = await AsyncStorage.getItem("whatsthat_session_token")
+    fetch("http://localhost:3333/api/1.0.0/user/" + user_id + "/photo", {
+      method: "GET",
+      headers: {
+        "X-Authorization": await AsyncStorage.getItem("whatsthat_session_token"),
+        'Content-Type': 'image/PNG'
+      }
+    })
+      .then((res) => {
+        return res.blob()
+      })
+      .then((resBlob) => {
+        let data = URL.createObjectURL(resBlob);
 
-            this.setState({
-                photo: data,
-                isLoading: false
-            })
+        this.setState({
+          photo: data,
+          isLoading: false
         })
-        .catch((err) => {
-            console.log(err)
-        })
-    }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 
   render() {
     console.log(this.state.userinfo)
-    if(this.state.photo){
-    return (
-      <View>
-        <Image
-                      source={{
-                          uri: this.state.photo
-                      }}
-                      style={{
-                          width: 100,
-                          height: 100
-                      }}
-                  />
+    if (this.state.photo) {
+      return (
+        <View>
+          <Image
+            source={{
+              uri: this.state.photo
+            }}
+            style={{
+              width: 100,
+              height: 100
+            }}
+          />
 
-        
 
-        {this.state.userinfo && (
-          <Text>Name: {this.state.userinfo.first_name}</Text>
-        )}
 
-        {this.state.userinfo && (
-          <Text>Surname: {this.state.userinfo.last_name}</Text>
-        )}
+          {this.state.userinfo && (
+            <Text>Name: {this.state.userinfo.first_name}</Text>
+          )}
 
-        {this.state.userinfo && (
-          <Text>Email: {this.state.userinfo.email}</Text>
-        )}
+          {this.state.userinfo && (
+            <Text>Surname: {this.state.userinfo.last_name}</Text>
+          )}
 
-        <Button title="Add Photo" onPress={() => this.props.navigation.navigate('Camera')} />
-      </View >
-    );
-        }else{
-          return (<Text>Loading</Text>)
-        }
+          {this.state.userinfo && (
+            <Text>Email: {this.state.userinfo.email}</Text>
+          )}
+
+          <Button title="Add Photo" onPress={() => this.props.navigation.navigate('Camera')} />
+          <Button title="Update Details" onPress={() => this.props.navigation.navigate('Updatedetails', {userfirstname: this.state.userinfo.first_name, userlastname: this.state.userinfo.last_name, useremail: this.state.userinfo.email} )} />
+        </View >
+      );
+    } else {
+      return (<Text>Loading</Text>)
+    }
   }
 }
 

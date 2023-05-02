@@ -1,5 +1,5 @@
 import React, { Component, useEffect } from 'react';
-import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default class UpdateDetails extends Component {
@@ -66,7 +66,7 @@ export default class UpdateDetails extends Component {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                "X-Authorization": await asyncStorage.getItem("whatsthat_session_token")
+                "X-Authorization": await AsyncStorage.getItem("whatsthat_session_token")
             },
             body: JSON.stringify(updatedDetails)
         })
@@ -110,7 +110,7 @@ export default class UpdateDetails extends Component {
 
                 <Button
                     title="Update Details"
-                    onPress={this.UpdateDetails}
+                    onPress={this.changeDetails}
                 />
             </View>
 
