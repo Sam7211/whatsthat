@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { Component } from 'react';
-import { FlatList, ActivityIndicator, Text, View, Button, TextInput } from 'react-native';
+import { FlatList, ActivityIndicator, Text, View, Button, TextInput,Image } from 'react-native';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -74,12 +74,12 @@ export default class Profile extends Component {
         })
     }
 
-    render(){
-      console.log(photo)
-      if(this.state.photo){
-          return (
-              <View style={{flex:1}}>
-                  <Image
+  render() {
+    console.log(this.state.userinfo)
+    if(this.state.photo){
+    return (
+      <View>
+        <Image
                       source={{
                           uri: this.state.photo
                       }}
@@ -88,17 +88,6 @@ export default class Profile extends Component {
                           height: 100
                       }}
                   />
-              </View>
-          )
-      }else{
-          return (<Text>Loading</Text>)
-      }
-  }
-
-  render() {
-    console.log(this.state.userinfo)
-    return (
-      <View>
 
         
 
@@ -117,8 +106,9 @@ export default class Profile extends Component {
         <Button title="Add Photo" onPress={() => this.props.navigation.navigate('Camera')} />
       </View >
     );
+        }else{
+          return (<Text>Loading</Text>)
+        }
   }
-
-  
 }
 

@@ -12,49 +12,49 @@ export default class UpdateDetails extends Component {
             password: ""
         };
 
-        this.updateUser = this.updateUser.bind(this)
+        this.changeDetails = this.changeDetails.bind(this)
     }
 
     componentDidMount() {
-        const { orig_firstname, orig_lastname, orig_email } = this.props.route.params;
+        const { userfirstname, userlastname, useremail } = this.props.route.params;
         this.setState({
-            firstname: orig_firstname,
-            lastname: orig_lastname,
-            email: orig_email
+            firstname: userfirstname,
+            lastname: userlastname,
+            email: useremail
         });
     }
 
-    handleFirstnamechange(firstname) {
+    Firstnamechange(firstname) {
         this.setState({ firstname })
     };
 
-    handleLastnamechange(lastname) {
+    Lastnamechange(lastname) {
         this.setState({ lastname })
     };
 
-    handleEmailnamechange(email) {
+    Emailnamechange(email) {
         this.setState({ email })
     };
 
-    handlePasswordnamechange(password) {
+    Passwordchange(password) {
         this.setState({ password })
     };
 
-    async updateUser() {
+    async changeDetails() {
         const { firstname, lastname, email, password } = this.state;
-        const { orig_firstname, orig_lastname, orig_email } = this.props.route.params;
+        const { userfirstname, userlastname, useremail } = this.props.route.params;
 
 
         const user_id = await AsyncStorage.getItem("whatsthat_user_id");
         const updatedDetails = {};
 
-        if (firstname !== orig_firstname) {
+        if (firstname !== userfirstname) {
             updatedDetails.first_name = firstname;
         }
-        if (lastname !== orig_lastname) {
+        if (lastname !== userlastname) {
             updatedDetails.last_name = lastname;
         }
-        if (email !== orig_email) {
+        if (email !== useremail) {
             updatedDetails.email = email;
         }
         if (password !== '') {
@@ -78,6 +78,44 @@ export default class UpdateDetails extends Component {
                 Alert.alert('Information Not Updated');
                 ;
             })
+
+    }
+
+
+
+    render() {
+        return (
+            <View>
+                <TextInput
+                    placeholder='First Name'
+                    onChangeText={( firstname ) => this.Firstnamechange(firstname)}
+                value={this.state.firstname}
+            />
+                <TextInput
+                    placeholder='Last Name'
+                    onChangeText={( lastname ) => this.Lastnamechange(lastname)}
+                value={this.state.lastname}
+            />
+                <TextInput
+                    placeholder='Email'
+                    onChangeText={( email ) => this.Emailnamechange(email)}
+                value={this.state.email}
+            />
+                <TextInput
+                    placeholder='Password'
+                    onChangeText={( password ) => this.Passwordchange(password)}
+                secureTextEntry = {true}
+                value={this.state.password}
+            />
+
+                <Button
+                    title="Update Details"
+                    onPress={this.UpdateDetails}
+                />
+            </View>
+
+
+        );
 
     }
 
