@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { Component } from 'react';
-import { FlatList, ActivityIndicator, Text, View, Button, TextInput } from 'react-native';
+import { FlatList, ActivityIndicator, Text, View, Button, TextInput, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native-web';
 
 export default class NewChat extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ export default class NewChat extends Component {
     }
 
     async NewChat() {
-        const {Chat} = this.state;
+        const { Chat } = this.state;
         return fetch('http://localhost:3333/api/1.0.0/chat', {
             method: 'POST',
             headers: {
@@ -45,20 +46,50 @@ export default class NewChat extends Component {
             });
     }
 
-    render(){
+    render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <TextInput
+                    style={styles.input}
                     placeholder='Create Chat'
-                    onChangeText={(Chat) => this.setState({Chat})}
+                    onChangeText={(Chat) => this.setState({ Chat })}
                     value={this.state.Chat}
                 />
-                <Button
+                <Button style={styles.button}
                     title="New Chat"
                     onPress={this.NewChat}
                 />
+
             </View>
-    
-            );
-        }
+        );
     }
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#fff',
+        padding: 20,
+    },
+    input: {
+        width: '100%',
+        height: 40,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 5,
+        padding: 10,
+        marginBottom: 20,
+    },
+    button: {
+      backgroundColor: 'blue',
+      borderRadius: 5,
+      height: 40,
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop: 10,
+      marginBottom: 10,
+    },
+});

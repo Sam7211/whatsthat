@@ -85,38 +85,69 @@ export default class UpdateDetails extends Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <TextInput
+                    style={styles.input}
                     placeholder='First Name'
-                    onChangeText={( firstname ) => this.Firstnamechange(firstname)}
-                value={this.state.firstname}
-            />
+                    onChangeText={(firstname) => this.Firstnamechange(firstname)}
+                    value={this.state.firstname}
+                />
                 <TextInput
+                    style={styles.input}
                     placeholder='Last Name'
-                    onChangeText={( lastname ) => this.Lastnamechange(lastname)}
-                value={this.state.lastname}
-            />
+                    onChangeText={(lastname) => this.Lastnamechange(lastname)}
+                    value={this.state.lastname}
+                />
                 <TextInput
+                    style={styles.input}
                     placeholder='Email'
-                    onChangeText={( email ) => this.Emailnamechange(email)}
-                value={this.state.email}
-            />
+                    onChangeText={(email) => this.Emailnamechange(email)}
+                    value={this.state.email}
+                />
                 <TextInput
+                    style={styles.input}
                     placeholder='Password'
-                    onChangeText={( password ) => this.Passwordchange(password)}
-                secureTextEntry = {true}
-                value={this.state.password}
-            />
+                    onChangeText={(password) => this.Passwordchange(password)}
+                    secureTextEntry={true}
+                    value={this.state.password}
+                />
 
                 <Button
-                    title="Update Details"
+                    title='Update Details'
                     onPress={this.changeDetails}
+                    style={styles.button}
+                    textStyle={styles.buttonText}
                 />
             </View>
-
-
         );
-
     }
-
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#FFFFF',
+        padding: 20,
+    },
+    input: {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        width: '100%',
+    },
+    button: {
+        backgroundColor: 'green',
+        padding: 10,
+        borderRadius: 5,
+        width: '100%',
+    },
+    buttonText: {
+        color: '#FFFFFF',
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+});

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Button } from 'react-native';
-import { TextInput } from 'react-native-web';
+import { View, Button, StyleSheet } from 'react-native';
+import { TextInput,Text } from 'react-native-web';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { TouchableOpacity } from 'react-native-web';
 
 export default class Login extends Component {
   constructor(props) {
@@ -57,53 +58,75 @@ export default class Login extends Component {
 
 
 
-render() {
-  return (
-
-    <View>
-      <TextInput
-        placeholder='Email'
-        onChangeText={(value => this.setState({email: value}))}
-        value={this.state.email}
-      />
-
-      <TextInput
-        placeholder='Password'
-        onChangeText={(value => this.setState({password: value}))}
-        secureTextEntry = {true}
-        value={this.state.password}
-      />
-      <Button
-        title="Login"
-        onPress={() => this.Login()}
-      />
-
-      <Button
-        title="Need an account?"
-        onPress={() => this.props.navigation.navigate('Register')}
+  render() {
+    return (
+  
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder='Email'
+          onChangeText={(value => this.setState({email: value}))}
+          value={this.state.email}
         />
-    </View>
-
-// const styles = StyleSheet.create({
-//   box: {
-//     width: 50,
-//     height: 50,
-//   },
-//   row: {
-//     flexDirection: 'row',
-//     flexWrap: 'wrap',
-//   },
-//   button: {
-//  padding: 8,
-//    borderRadius: 4,
-// backgroundColor: 'oldlace',
-// alignSelf: 'flex-start',
-//     marginRight: 10,
-//    marginBottom: 10,
-//    },
-//  }
-
-
-  );
+  
+        <TextInput
+          style={styles.input}
+          placeholder='Password'
+          onChangeText={(value => this.setState({password: value}))}
+          secureTextEntry = {true}
+          value={this.state.password}
+        />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => this.Login()}
+        >
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+  
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => this.props.navigation.navigate('Register')}
+        >
+          <Text style={styles.buttonText}>Need an account?</Text>
+        </TouchableOpacity>
+      </View>
+  
+    );
+  }
 }
-}
+  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#fff',
+      padding: 20,
+    },
+    input: {
+      height: 40,
+      width: '100%',
+      borderColor: 'gray',
+      borderWidth: 1,
+      borderRadius: 5,
+      marginTop: 10,
+      marginBottom: 10,
+      paddingLeft: 10,
+    },
+    button: {
+      backgroundColor: 'green',
+      borderRadius: 5,
+      height: 40,
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop: 10,
+      marginBottom: 10,
+    },
+    buttonText: {
+      color: '#fff',
+      fontSize: 16,
+    },
+  });
+  
+

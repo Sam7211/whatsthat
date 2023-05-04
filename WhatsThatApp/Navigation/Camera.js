@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         padding: 5,
         margin: 5,
-        backgroundColor: 'steelblue'
+        backgroundColor: 'blue'
     },
     button: {
         width: '100%',

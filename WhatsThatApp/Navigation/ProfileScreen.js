@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { Component } from 'react';
-import { FlatList, ActivityIndicator, Text, View, Button, TextInput, Image } from 'react-native';
+import { FlatList, ActivityIndicator, Text, View, Button, TextInput, Image, StyleSheet} from 'react-native';
+import { TouchableOpacity } from 'react-native-web';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -75,41 +76,73 @@ export default class Profile extends Component {
   }
 
   render() {
-    console.log(this.state.userinfo)
+    console.log(this.state.userinfo);
+  
     if (this.state.photo) {
       return (
-        <View>
+        <View style={styles.container}>
           <Image
-            source={{
-              uri: this.state.photo
-            }}
-            style={{
-              width: 100,
-              height: 100
-            }}
+            source={{ uri: this.state.photo }}
+            style={styles.image}
           />
-
-
-
+  
           {this.state.userinfo && (
-            <Text>Name: {this.state.userinfo.first_name}</Text>
+            <Text style={styles.text}>Name: {this.state.userinfo.first_name}</Text>
           )}
-
+  
           {this.state.userinfo && (
-            <Text>Surname: {this.state.userinfo.last_name}</Text>
+            <Text style={styles.text}>Surname: {this.state.userinfo.last_name}</Text>
           )}
-
+  
           {this.state.userinfo && (
-            <Text>Email: {this.state.userinfo.email}</Text>
+            <Text style={styles.text}>Email: {this.state.userinfo.email}</Text>
           )}
-
-          <Button title="Add Photo" onPress={() => this.props.navigation.navigate('Camera')} />
-          <Button title="Update Details" onPress={() => this.props.navigation.navigate('Updatedetails', {userfirstname: this.state.userinfo.first_name, userlastname: this.state.userinfo.last_name, useremail: this.state.userinfo.email} )} />
-        </View >
+  
+          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Camera')}>
+            <Text style={styles.buttonText}>Add Photo</Text>
+          </TouchableOpacity>
+  
+          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Updatedetails', {userfirstname: this.state.userinfo.first_name, userlastname: this.state.userinfo.last_name, useremail: this.state.userinfo.email})}>
+            <Text style={styles.buttonText}>Update Details</Text>
+          </TouchableOpacity>
+        </View>
       );
     } else {
-      return (<Text>Loading</Text>)
+      return (<Text>Loading</Text>);
     }
   }
 }
+  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 20,
+    },
+    image: {
+      width: 100,
+      height: 100,
+      marginBottom: 20,
+    },
+    text: {
+      fontSize: 18,
+      marginBottom: 10,
+    },
+    button: {
+      backgroundColor: 'blue',
+      borderRadius: 5,
+      height: 40,
+      paddingHorizontal: 20,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginVertical: 10,
+    },
+    buttonText: {
+      color: '#fff',
+      fontSize: 16,
+    },
+  });
+
 
