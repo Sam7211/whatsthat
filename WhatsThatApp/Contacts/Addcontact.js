@@ -40,7 +40,6 @@ export default class Addcontact extends Component {
                     this.props.navigation.navigate('Chatscreen')
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
         } else {
             console.log("Please enter a valid user");
