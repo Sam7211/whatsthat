@@ -36,8 +36,7 @@ export default class Addcontact extends Component {
                         throw 'Something went wrong - try again';
                     }
                 })
-                .then((data) => {
-                    console.log(data)
+                .then((info) => {
                     this.props.navigation.navigate('Chatscreen')
                 })
                 .catch((error) => {

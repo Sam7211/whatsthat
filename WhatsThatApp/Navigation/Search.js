@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { Component } from 'react';
-import { FlatList, ActivityIndicator, Text, View, Button, TextInput } from 'react-native';
+import { FlatList, ActivityIndicator, Text, View, Button, TextInput,StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-web';
 
 export default class Search extends Component {
@@ -35,8 +35,8 @@ export default class Search extends Component {
                     throw 'Something went wrong - Try again';
                 }
             })
-            .then((data) => {
-                this.setState({ user: data });
+            .then((info) => {
+                this.setState({ user: info });
             })
             .catch((error) => {
                 console.log(error);
@@ -48,30 +48,65 @@ export default class Search extends Component {
         console.log(user)
 
         return (
-            <View>
-                <View>
+            <View style={styles.container}>
+                <View style={styles.searchContainer}>
                     <TextInput
                         value={search}
+                        style={styles.searchInput}
                         placeholder="Search Contacts"
                         onChangeText={(text) => this.setState({ search: text })}
                     />
                     <TouchableOpacity onPress={() => this.Search()}>
-                        <Text>Search</Text>
+                        <Text style={styles.searchButtonText}>Search</Text>
                     </TouchableOpacity>
                 </View>
-                {user && (
                     <FlatList
                         data={user}
-                        renderItem={({ data }) => (
-                            <View>
-                                <Text>{data.given_name}</Text>
-                                <Text>{data.family_name}</Text>
-                                <Text>{data.email}</Text>
+                        renderItem={(info) => (
+                            <View style={styles.itemContainer}>
+                                <Text>{JSON.stringify(info)}</Text>
+                                <Text>{info.given_name}</Text>
+                                <Text>{info.family_name}</Text>
+                                <Text>{info.email}</Text>
                             </View>
                         )}
                     />
-                )}
             </View>
         );
     };
 } 
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      padding: 10,
+    },
+    searchContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: 10,
+    },
+    searchInput: {
+      flex: 1,
+      borderWidth: 1,
+      borderRadius: 5,
+      paddingHorizontal: 10,
+      marginRight: 10,
+    },
+    searchButton: {
+        backgroundColor: 'lightblue',
+        borderRadius: 5,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+      },
+      searchButtonText: {
+        color: 'black',
+      },
+      itemContainer: {
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 5,
+        padding: 10,
+        marginBottom: 10,
+      },
+    });

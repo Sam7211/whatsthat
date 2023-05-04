@@ -38,8 +38,8 @@ export default class NewChat extends Component {
                     throw 'Something went wrong on our end - Please try again later';
                 }
             })
-            .then((data) => {
-                console.log(data)
+            .then((info) => {
+                
             })
             .catch((error) => {
                 console.log(error);

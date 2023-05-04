@@ -102,6 +102,10 @@ export default class Chatscreen extends Component {
                         <Text style={styles.buttonText}>Add Contacts</Text>
                     </TouchableOpacity>
 
+                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Viewcontacts')}>
+                        <Text style={styles.buttonText}>View Contacts</Text>
+                    </TouchableOpacity>
+
                     <TouchableOpacity style={styles.button} onPress={this.SignOut}>
                         <Text style={styles.buttonText}>Sign Out</Text>
                     </TouchableOpacity>

@@ -36,8 +36,8 @@ export default class Profile extends Component {
           throw 'Something went wrong on our end - Please try again later';
         }
       })
-      .then((data) => {
-        this.setState({ userinfo: data });
+      .then((info) => {
+        this.setState({ userinfo: info });
       })
       .catch((error) => {
         console.log(error);
