@@ -38,6 +38,7 @@ export default class Viewcontacts extends Component {
                 })
                 .then((info) => {
                     this.setState({ user: info });
+                    console.log(info);
                 })
                 .catch((error) => {
                     console.log(error);

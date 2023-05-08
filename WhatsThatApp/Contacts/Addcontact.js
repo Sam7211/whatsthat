@@ -12,6 +12,10 @@ export default class Addcontact extends Component {
         this.Addcontact = this.Addcontact.bind(this);
     }
 
+    Addcontact = (user_id) => {
+        this.setState({user_id});
+    }
+
     async Addcontact() {
         const user_id = this.state.user_id.trim();
 
@@ -25,7 +29,7 @@ export default class Addcontact extends Component {
             })
                 .then((response) => {
                     if (response.status === 200) {
-                        return response.text();
+                        return response.text('User Added');
                     } else if (response.status === 400) {
                         throw 'Cannot Add User';
                     } else if (response.status === 401) {
@@ -38,6 +42,7 @@ export default class Addcontact extends Component {
                 })
                 .then((info) => {
                     this.props.navigation.navigate('Chatscreen')
+                    console.log(info);
                 })
                 .catch((error) => {
                 });
@@ -52,6 +57,8 @@ export default class Addcontact extends Component {
                 <TextInput
                     style={styles.textInput}
                     placeholder="Add Contacts"
+                    onChangeText={this.Addcontact}
+                    value={this.state.user_id}
                 />
                 <TouchableOpacity
                     style={styles.button}
