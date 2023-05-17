@@ -44,35 +44,6 @@ export default class Chatscreen extends Component {
             });
     }
 
-    SignOut = () => {
-        return fetch('http://localhost:3333/api/1.0.0/logout', {
-            method: 'POST',
-            headers: {
-                "X-Authorization": AsyncStorage.getItem("whatsthat_session_token")
-            }
-        })
-            .then(async (Response) => {
-                if (Response.status === 200) {
-                    await AsyncStorage.removeItem("whatsthat_session_token")
-                    await AsyncStorage.removeItem("whatsthat_user_id")
-                    this.props.navigation.navigate("Login")
-                } else if (Response.status === 401) {
-                    console.log("Unauthorised")
-                    await AsyncStorage.removeItem("whatsthat_session_token")
-                    await AsyncStorage.removeItem("whatsthat_user_id")
-                    this.props.navigation.navigate("Login")
-                } else {
-                    throw "Something went wrong on our end. Please try again"
-                }
-            })
-        // .catch((error) => {
-        //     this.setState({"error": error})
-        //     this.setState({"Submitted": false})
-        // })
-    }
-
-
-
     componentDidMount() {
         this.Chats();
     }
@@ -106,8 +77,16 @@ export default class Chatscreen extends Component {
                         <Text style={styles.buttonText}>View Contacts</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button} onPress={this.SignOut}>
-                        <Text style={styles.buttonText}>Sign Out</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Removecontact')}>
+                        <Text style={styles.buttonText}>Remove Contacts</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Blockcontact')}>
+                        <Text style={styles.buttonText}>Block Contacts</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Unblockcontact')}>
+                        <Text style={styles.buttonText}>Unblock Contacts</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -145,4 +124,3 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
 });
-

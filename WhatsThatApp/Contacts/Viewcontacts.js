@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { Component } from 'react';
-import { Text, View, Button, TextInput, StyleSheet,FlatList } from 'react-native';
-import { TouchableOpacity } from 'react-native-web';
+import { Text, View, Button, TextInput, StyleSheet, FlatList } from 'react-native';
 
 export default class Viewcontacts extends Component {
     constructor(props) {
@@ -10,6 +9,10 @@ export default class Viewcontacts extends Component {
             user_id: "",
         };
         this.Viewcontacts = this.Viewcontacts.bind(this);
+    }
+
+    componentDidMount() {
+        this.Viewcontacts();
     }
 
     async Viewcontacts() {
@@ -51,17 +54,19 @@ export default class Viewcontacts extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <Button title="View Contacts" onPress={this.Viewcontacts} />
                 <FlatList
-                        data={user}
-                        renderItem={( info ) => (
-                            <View>
-                                <Text>{JSON.stringify(info)}</Text>
-                                <Text>{info.given_name}</Text>
-                                <Text>{info.family_name}</Text>
-                                <Text>{info.email}</Text>
-                            </View>
-                        )}
-                    />
+                    data={this.state.user}
+                    renderItem={({ item }) => (
+                        <View>
+                            <Text>{JSON.stringify(item)}</Text>
+                            <Text>{item.given_name}</Text>
+                            <Text>{item.family_name}</Text>
+                            <Text>{item.email}</Text>
+                        </View>
+                    )}
+                />
+
             </View>
         )
     }
@@ -93,11 +98,3 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
 });
-
-
-
-
-
-
-
-

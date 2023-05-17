@@ -3,24 +3,24 @@ import React, { Component } from 'react';
 import { Text, View, Button, TextInput, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-web';
 
-export default class Removecontact extends Component {
+export default class Unblockcontact extends Component {
     constructor(props) {
         super(props);
         this.state = {
             user_id: "",
         };
-        this.Removecontact = this.Removecontact.bind(this);
+        this.Unblockcontact = this.Unblockcontact.bind(this);
     }
 
-    Removecontact = (user_id) => {
+    Unblockcontact = (user_id) => {
         this.setState({ user_id });
     }
 
-    async Removecontact() {
+    async Unblockcontact() {
         const user_id = this.state.user_id.trim();
 
         if (user_id.length > 0) {
-            return fetch('http://localhost:3333/api/1.0.0/user/' + user_id + '/contact', {
+            return fetch('http://localhost:3333/api/1.0.0/user/' + user_id + '/block', {
                 method: 'DELETE',
                 headers: {
                     "X-Authorization": await AsyncStorage.getItem("whatsthat_session_token"),
@@ -56,15 +56,15 @@ export default class Removecontact extends Component {
             <View style={styles.container}>
                 <TextInput
                     style={styles.textInput}
-                    placeholder="Remove Contact"
-                    onChangeText={this.Removecontact}
+                    placeholder="Unblock Contacts"
+                    onChangeText={this.Unblockcontact}
                     value={this.state.user_id}
                 />
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => this.Removecontact()}
+                    onPress={() => this.Unblockcontact()}
                 >
-                    <Text style={styles.buttonText}>Remove Contacts</Text>
+                    <Text style={styles.buttonText}>Unblock Contact</Text>
                 </TouchableOpacity>
             </View>
         )

@@ -39,7 +39,7 @@ export default class NewChat extends Component {
                 }
             })
             .then((info) => {
-                
+
             })
             .catch((error) => {
                 console.log(error);
@@ -83,13 +83,13 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     button: {
-      backgroundColor: 'blue',
-      borderRadius: 5,
-      height: 40,
-      width: '100%',
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginTop: 10,
-      marginBottom: 10,
+        backgroundColor: 'blue',
+        borderRadius: 5,
+        height: 40,
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 10,
+        marginBottom: 10,
     },
 });

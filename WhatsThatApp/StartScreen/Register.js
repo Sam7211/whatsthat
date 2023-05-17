@@ -36,6 +36,11 @@ export default class Register extends Component {
         console.log(email)
         console.log(password)
 
+        if (!firstname || !lastname || !email || !password) {
+            Alert.alert('Validation Error', 'Please fill in all fields');
+            return;
+        }
+
         this.setState({
             firstname: '',
             lastname: '',
